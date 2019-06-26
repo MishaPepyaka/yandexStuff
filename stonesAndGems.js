@@ -9,13 +9,36 @@
 //
 ///////////////////////////////////////////////
 
+const readline = require('readline');
 
-const J = "ab";
-const S = "aabbccd";
-var counter = 0;
-
-J.split('').map((item) => {
-    counter += S.split(item).length - 1
+const rl = readline.createInterface({
+    input: process.stdin
 });
 
-console.log(counter);
+rl.on('line', (line) => {
+    lines.push(line);
+}).on('close', () => {
+    const [J, S] = lines;
+    var counter = 0;
+    J.split('').map((item) => {
+        counter += S.split(item).length - 1
+    });
+    process.stdout.write(counter.toString());
+
+});
+
+// Вариант на более явно заданых циклах и перебором символов, без регулярок (split жрет регулярку), возможно дешевле.
+//
+// var time = Date.now();
+// var counter = 0;
+//
+// for (var x=0; x<J.length; x++){
+//     for (y=0; y<S.length; y++){
+//         if (J[x] == S[y]) counter++;
+//
+//     }
+// }
+//
+//
+// time = Date.now() - time;
+// console.log("Ответ: "+counter+", время исполнения: "+time+" мс.");
