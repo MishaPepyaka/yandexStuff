@@ -15,14 +15,17 @@ const rl = readline.createInterface({
     input: process.stdin
 });
 
+let lines = [];
 rl.on('line', (line) => {
     lines.push(line);
 }).on('close', () => {
     const [J, S] = lines;
-    var counter = 0;
-    J.split('').map((item) => {
-        counter += S.split(item).length - 1
-    });
+    let counter = 0;
+    for (let x = 0; x < S.length; x++) {
+        if (J.includes(S.charAt(x))) {
+            ++counter;
+        }
+    }
     process.stdout.write(counter.toString());
 
 });
