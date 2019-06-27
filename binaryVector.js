@@ -29,6 +29,7 @@ rl.on('line', (line) => {
         if (lines[i] == 0) {
             if (counter > max) max = counter;
             counter = 0;
+            continue;
         } else {
             counter++;
             if (counter > max) max = counter;
